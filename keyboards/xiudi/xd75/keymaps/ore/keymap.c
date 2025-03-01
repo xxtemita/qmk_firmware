@@ -27,12 +27,14 @@ enum layer_names {
 
 // Layer related keycodes
 #define WBASE DF(_WBASE)
-#define WFN MO(_WFN)
+#define WFN LT(_WFN, KC_SPC)
 #define MBASE DF(_MBASE)
-#define MFN MO(_MFN)
+#define MFN LT(_MFN, KC_SPC)
 #define ADJUST MO(_ADJUST)
 
 // Special keycodes
+#define ESC_CTL LCTL_T(KC_ESC)
+#define ESC_GUI LGUI_T(KC_ESC)
 #define SPC_SFT SFT_T(KC_SPC)
 #define EQL_ALT RALT_T(KC_EQL)
 #define QUO_ALT LALT_T(KC_QUOT)
@@ -42,6 +44,9 @@ enum layer_names {
 #define GRV_GUI LGUI_T(KC_GRV)
 
 // Shortcuts
+#define IME_ON LSFT(KC_F2)
+#define IME_OFF LSFT(KC_F1)
+
 #define WMV_RDT LGUI(LCTL(KC_RGHT))
 #define WMV_LDT LGUI(LCTL(KC_LEFT))
 #define WALL_DT LGUI(KC_TAB)
@@ -63,11 +68,11 @@ enum layer_names {
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [_WBASE] = LAYOUT_ortho_5x15(
-        KC_ESC,  KC_1,    KC_2,    KC_3,    KC_4,    KC_5,    KC_LCBR, ADJUST,  KC_RCBR, KC_6,    KC_7,    KC_8,    KC_9,    KC_0,    KC_BSPC,
-        KC_TAB,  KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,    KC_LBRC, KC_BSLS, KC_RBRC, KC_Y,    KC_U,    KC_I,    KC_O,    KC_P,    KC_DEL,
-        KC_LCTL, KC_A,    KC_S,    KC_D,    KC_F,    KC_G,    KC_LPRN, KC_UP,   KC_RPRN, KC_H,    KC_J,    KC_K,    KC_L,    KC_SCLN, KC_ENT,
+        KC_GRV,  KC_1,    KC_2,    KC_3,    KC_4,    KC_5,    XXXXXXX, KC_DEL,  KC_EQL,  KC_6,    KC_7,    KC_8,    KC_9,    KC_0,    KC_BSPC,
+        KC_TAB,  KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,    KC_LBRC, ADJUST,  KC_RBRC, KC_Y,    KC_U,    KC_I,    KC_O,    KC_P,    KC_BSLS,
+        KC_LCTL, KC_A,    KC_S,    KC_D,    KC_F,    KC_G,    KC_LPRN, KC_UP,   KC_RPRN, KC_H,    KC_J,    KC_K,    KC_L,    KC_SCLN, KC_QUOT,
         KC_LSFT, KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,    KC_LEFT, KC_DOWN, KC_RGHT, KC_N,    KC_M,    KC_COMM, KC_DOT,  KC_SLSH, KC_RSFT,
-        KC_HOME, KC_PGDN, KC_LGUI, KC_F13,  QUO_ALT, GRV_CTL, SPC_SFT, WFN,     SPC_SFT, MIN_CTL, EQL_ALT, KC_F14,  KC_RGUI, KC_PGUP, KC_END
+        KC_ESC,  KC_LGUI, KC_LALT, XXXXXXX, IME_OFF, KC_LCTL, KC_SPC,  WFN,     KC_MINS, KC_LSFT, IME_ON,  XXXXXXX, XXXXXXX, XXXXXXX, KC_ENT
     ),
     [_WFN] = LAYOUT_ortho_5x15(
         _______, KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,   KC_F11,  KC_PSCR, KC_F12,  KC_F6,   KC_F7,   KC_F8,   KC_F9,   KC_F10,  _______,
@@ -77,11 +82,11 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______
     ),
     [_MBASE] = LAYOUT_ortho_5x15(
-        KC_ESC,  KC_1,    KC_2,    KC_3,    KC_4,    KC_5,    KC_LCBR, ADJUST,  KC_RCBR, KC_6,    KC_7,    KC_8,    KC_9,    KC_0,    KC_BSPC,
-        KC_TAB,  KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,    KC_LBRC, KC_BSLS, KC_RBRC, KC_Y,    KC_U,    KC_I,    KC_O,    KC_P,    KC_DEL,
-        KC_LCTL, KC_A,    KC_S,    KC_D,    KC_F,    KC_G,    KC_LPRN, KC_UP,   KC_RPRN, KC_H,    KC_J,    KC_K,    KC_L,    KC_SCLN, KC_ENT,
+        KC_GRV,  KC_1,    KC_2,    KC_3,    KC_4,    KC_5,    XXXXXXX, KC_DEL,  KC_EQL,  KC_6,    KC_7,    KC_8,    KC_9,    KC_0,    KC_BSPC,
+        KC_TAB,  KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,    KC_LBRC, ADJUST,  KC_RBRC, KC_Y,    KC_U,    KC_I,    KC_O,    KC_P,    KC_BSLS,
+        KC_LCTL, KC_A,    KC_S,    KC_D,    KC_F,    KC_G,    KC_LPRN, KC_UP,   KC_RPRN, KC_H,    KC_J,    KC_K,    KC_L,    KC_SCLN, KC_QUOT,
         KC_LSFT, KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,    KC_LEFT, KC_DOWN, KC_RGHT, KC_N,    KC_M,    KC_COMM, KC_DOT,  KC_SLSH, KC_RSFT,
-        KC_HOME, KC_PGDN, KC_LCTL, KC_HAEN, QUO_ALT, GRV_GUI, SPC_SFT, MFN,     SPC_SFT, MIN_GUI, EQL_ALT, KC_HANJ, KC_RCTL, KC_PGUP, KC_END
+        KC_ESC,  KC_LCTL, KC_LALT, XXXXXXX, IME_OFF, KC_LGUI, KC_SPC,  MFN,     KC_MINS, KC_LSFT, IME_ON,  XXXXXXX, XXXXXXX, XXXXXXX, KC_ENT
     ),
     [_MFN] = LAYOUT_ortho_5x15(
         _______, KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,   KC_F11,  KC_PSCR, KC_F12,  KC_F6,   KC_F7,   KC_F8,   KC_F9,   KC_F10,  _______,
